@@ -1,0 +1,107 @@
+{
+  "users": [
+    {
+      "fullName": "Иван Иванов",
+      "phone": "+79998884455",
+      "email": "123@mail.ru",
+      "organization": "Любители природы",
+      "password": "111111",
+      "confirmPassword": "111111",
+      "createdAt": "2025-06-14T09:02:16.946Z",
+      "id": 1
+    },
+    {
+      "fullName": "Сеня Синяков",
+      "phone": "+79996663322",
+      "email": "1234@mail.ru",
+      "organization": "Синяки за свободу",
+      "password": "111111",
+      "confirmPassword": "111111",
+      "createdAt": "2025-06-15T12:30:43.647Z",
+      "id": 2
+    }
+  ],
+  "_unique_keys": {
+    "users": [
+      "email"
+    ]
+  },
+  "requests": [
+    {
+      "visitorName": "Иван Иванов",
+      "visitDate": "2026-02-03T01:01",
+      "purpose": "Пойти оглянуться",
+      "userId": 1,
+      "status": "отклонена",
+      "createdAt": "2025-06-15T09:10:40.834Z",
+      "localId": 1,
+      "id": 1
+    },
+    {
+      "visitorName": "Иван Иванов",
+      "visitDate": "3333-03-12T03:32",
+      "purpose": "Работа есть?",
+      "userId": 1,
+      "status": "пропуск выдан",
+      "createdAt": "2025-06-15T10:02:17.151Z",
+      "id": 2,
+      "localId": 2,
+      "updatedAt": "2025-06-15T10:02:25.903Z"
+    },
+    {
+      "visitorName": "Иван Иванов",
+      "visitDate": "2026-04-02T01:01",
+      "purpose": "Просто промышленный туризм",
+      "userId": 1,
+      "status": "отклонена",
+      "createdAt": "2025-06-15T10:18:37.533Z",
+      "id": 3,
+      "localId": 3,
+      "updatedAt": "2025-06-15T10:18:44.877Z"
+    },
+    {
+      "visitorName": "Сеня Синяков",
+      "visitDate": "2025-11-11T12:00",
+      "purpose": "Узнать, как защититься от восстания машин",
+      "userId": 2,
+      "status": "отклонена",
+      "createdAt": "2025-06-15T12:31:37.932Z",
+      "id": 4,
+      "localId": 1,
+      "updatedAt": "2025-06-15T12:31:53.701Z"
+    },
+    {
+      "visitorName": "Сеня Синяков",
+      "visitDate": "2027-04-03T11:11",
+      "purpose": "Увидеть будущее технологий",
+      "userId": 2,
+      "status": "пропуск выдан",
+      "createdAt": "2025-06-15T12:42:39.743Z",
+      "id": 5,
+      "localId": 2,
+      "updatedAt": "2025-06-15T12:42:59.889Z"
+    },
+    {
+      "visitorName": "Сеня Синяков",
+      "visitDate": "2027-02-11T11:11",
+      "purpose": "Шанс пообщаться с гениальными инженерами",
+      "userId": 2,
+      "status": "пропуск выдан",
+      "createdAt": "2025-06-15T12:58:38.960Z",
+      "localId": 3,
+      "id": 6,
+      "updatedAt": "2025-06-16T10:28:11.845Z"
+    },
+    {
+      "visitorName": "Сеня Синяков",
+      "visitDate": "2026-02-02T02:02",
+      "purpose": "тестовый заезд",
+      "userId": 2,
+      "status": "пропуск готов",
+      "createdAt": "2025-06-16T10:21:32.974Z",
+      "localId": 4,
+      "id": 7,
+      "updatedAt": "2025-06-16T10:49:03.524Z"
+    }
+  ]
+}

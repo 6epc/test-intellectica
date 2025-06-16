@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="link logout-box">
+    <a [routerLink]="['/dashboard']">Назад к списку заявок</a>
+    <button class="logout" mat-flat-button color="primary" (click)="logout()">
+      Выйти
+    </button>
+  </div>
+
+  <ng-container *ngIf="request$ | async as request">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Заявка #{{ request.localId }}</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>
+          Статус:
+          <b [class]="getStatusClass(request.status)">
+            {{ request.status }}
+          </b>
+        </p>
+        <p>Дата посещения: {{ request.visitDate | date : "d MMMM yyyy" }}</p>
+        <p>Цель: {{ request.purpose }}</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button
+          mat-flat-button
+          color="primary"
+          *ngIf="request.status === 'в обработке'"
+          (click)="startApproval()"
+        >
+          Отправить на согласование
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          *ngIf="request.status === 'на согласовании'"
+          (click)="loadRequest()"
+        >
+          Получить статус
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          *ngIf="request.status === 'пропуск готов'"
+          (click)="confirmIssuance()"
+          color="primary"
+        >
+          Подтвердить выдачу
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</div>

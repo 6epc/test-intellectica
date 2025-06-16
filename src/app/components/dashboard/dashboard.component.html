@@ -1,0 +1,98 @@
+
+<div class="container logout-box">
+  <h2 class="userName">Привет, {{this.currentUser.fullName}}</h2>
+  <button class="logout" mat-flat-button color="primary" (click)="logout()">
+    Выйти
+  </button>
+</div>
+<!-- ? ПОДАТЬ ЗАЯВКУ -->
+<div class="container">
+  <h2>Подать заявку</h2>
+  <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+    <!-- ? FULL NAME -->
+    <mat-form-field>
+      <mat-label>ФИО посетителя</mat-label>
+      <input matInput formControlName="visitorName" readonly />
+    </mat-form-field>
+
+    <!-- ? VISIT DATE -->
+    <mat-form-field>
+      <mat-label>Дата визита</mat-label>
+      <input matInput type="datetime-local" formControlName="visitDate" />
+      <mat-error
+        *ngIf="
+          visitDate.touched &&
+          visitDate.dirty &&
+          visitDate?.hasError('required')
+        "
+      >
+        Обязательное поле
+      </mat-error>
+      <mat-error *ngIf="visitDate.dirty && visitDate?.hasError('pastDate')">
+        Укажите корректно дату, позже текущей даты
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ? TEXT PURPOSE -->
+    <mat-form-field>
+      <mat-label>Цель</mat-label>
+      <textarea matInput formControlName="purpose"></textarea>
+      <mat-error *ngIf="purpose.dirty && purpose?.hasError('required')">
+        Обязательное поле
+      </mat-error>
+      <mat-error *ngIf="purpose.dirty && purpose?.hasError('minlength')">
+        Минимум символов {{purpose.errors?.['minlength'].actualLength}} из
+        {{purpose.errors?.['minlength'].requiredLength}}
+      </mat-error>
+      <mat-error *ngIf="purpose.dirty && purpose?.hasError('maxlength')">
+        Минимум символов {{purpose.errors?.['maxlength'].actualLength}} из
+        {{purpose.errors?.['maxlength'].requiredLength}}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ? Submit -->
+    <button
+      class="action"
+      mat-flat-button
+      color="primary"
+      [disabled]="requestForm.invalid"
+    >
+      Отправить
+    </button>
+  </form>
+</div>
+
+<!-- ? ЗАЯВКИ -->
+<div class="table-container container">
+  <h2>3аявки</h2>
+  <table class="dashboard-table" mat-table [dataSource]="(dataSource$ | async) ?? []">
+    <!-- visitorName -->
+    <ng-container matColumnDef="visitorName">
+      <th mat-header-cell *matHeaderCellDef>ФИО</th>
+      <td mat-cell *matCellDef="let request">{{ request.visitorName }}</td>
+    </ng-container>
+
+    <!-- visitDate -->
+     <ng-container matColumnDef="visitDate">
+      <th mat-header-cell *matHeaderCellDef>Дата посещения</th>
+      <td mat-cell *matCellDef="let request">{{ request.visitDate | date:'d MMMM yyyy'}}</td>
+     </ng-container>
+
+     <!-- purpose -->
+    <ng-container matColumnDef="purpose">
+      <th mat-header-cell *matHeaderCellDef>Цель посещения</th>
+      <td mat-cell *matCellDef="let request">{{ request.purpose }}</td>
+     </ng-container>
+
+    <!-- status -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Статус</th>
+      <td mat-cell *matCellDef="let request">
+        <span [class]="getStatusClass(request.status)">{{ request.status }}</span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['visitorName', 'visitDate', 'purpose', 'status']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['visitorName', 'visitDate', 'purpose', 'status']" (click)="navigateToReq(row)"></tr>
+  </table>
+</div>

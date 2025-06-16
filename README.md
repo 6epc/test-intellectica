@@ -1,59 +1,62 @@
-# Intellectica
+# Тестовый проект для "Интеллектика"
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+[![Angular](https://angular.io/)]
+[![Node.js](https://nodejs.org/)]
+[![JSON Server](https://github.com/typicode/json-server)]
 
-## Development server
+Тестовый фронтенд на Angular с имитацией рабочего процесса согласования заявок.
 
-To start a local development server, run:
+## 🚀 Быстрый старт
 
-```bash
-ng serve
-```
+1. **Установка зависимостей**:
+   ```bash
+   npm i
+2. **Запуск сервера с mock-данными:**:
+   ```bash
+   node server.js
+3. **Запуск Angular-приложения:**:
+  ```bash
+  ng serve
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Приложение будет доступно по адресу: http://localhost:4200
 
-## Code scaffolding
+## 🔑 Тестовые данные для входа
+Email: 1234@mail.ru
+Пароль: 111111
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🛠️ Функционал
+### 🔐 Аутентификация
+1. Страницы логина и регистрации с взаимными ссылками
+2. Реактивные формы с валидацией:
+    - Обязательные поля
+    - Минимальная/максимальная длина
+    - Кастомные валидаторы
 
-```bash
-ng generate component component-name
-```
+3. Автоматический редирект на /dashboard после успешного входа
+4. Сохранение данных пользователя в localStorage
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🛠️ Защищённые роуты
+/dashboard и /dashboard/:id защищены Guard'ом (canActivate)
 
-```bash
-ng generate --help
-```
+## 📝 Работа с заявками
+1. Имитация процесса согласования:
+    - "Отправить на согласование" → статус "На рассмотрении" (через 1 сек)
+    - Автоматическое решение:
+        * 70% вероятность: "Одобрено" (появляется кнопка "Выдать пропуск")
+        * 30% вероятность: "Не одобрено"
 
-## Building
+## ⚠️ Важные нюансы
+1. Версия json-server: 0.17.4 (более новые версии имеют проблемы с кастомным server.js)
+2. Требуемые версии:
+    - Node.js: ^20.12
+    - Angular: ^19.2
 
-To build the project run:
+## 🛠 Технологии
+* Angular 19
+* RxJS
+* Reactive Forms
+* JSON Server (mock API)
+* LocalStorage (хранение сессии)
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📜 Лицензия
+MIT

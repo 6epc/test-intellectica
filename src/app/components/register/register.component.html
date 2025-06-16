@@ -1,0 +1,102 @@
+<div class="container">
+  <h2>Регистрация</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <!-- ? FULL NAME -->
+    <mat-form-field appearance="fill">
+      <mat-label>ФИО</mat-label>
+      <input matInput formControlName="fullName" />
+      <mat-error *ngIf="fullName.dirty && fullName?.hasError('required')">
+        Обязательное поле
+      </mat-error>
+      <mat-error *ngIf="fullName.dirty && fullName?.hasError('minlength')">
+        Минимум символов {{fullName.errors?.['minlength'].actualLength}} из
+        {{fullName.errors?.['minlength'].requiredLength}}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ? PHONE -->
+    <mat-form-field appearance="fill">
+      <mat-label>Телефон</mat-label>
+      <input matInput formControlName="phone" />
+      <mat-error *ngIf="phone.dirty && phone?.hasError('required')">
+        Обязательное поле
+      </mat-error>
+      <mat-error *ngIf="phone.dirty && phone?.hasError('pattern')">
+        Введите корректный номер (например, +79001234567)
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ? EMAIL -->
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" #emailField />
+      <mat-error *ngIf="email.dirty && email?.hasError('required')">
+        Обязательное поле
+      </mat-error>
+      <mat-error *ngIf="email.dirty && email?.hasError('email')">
+        Введите корректный email
+      </mat-error>
+      <mat-error *ngIf="email?.hasError('duplicate')">
+        Этот email уже зарегистрирован
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ? ORGANIZATION -->
+    <mat-form-field appearance="fill">
+      <mat-label>Организация</mat-label>
+      <input matInput formControlName="organization" />
+      <mat-error *ngIf="organization.dirty && organization?.hasError('required')">
+        Обязательное поле
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ? PASSWORD -->
+    <mat-form-field appearance="fill">
+      <mat-label>Пароль</mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-error *ngIf="password.dirty && password?.hasError('required')">
+        Обязательное поле
+      </mat-error>
+      <mat-error *ngIf="password.dirty && password?.hasError('minlength')">
+        Символов {{password.errors?.['minlength'].actualLength}} из
+        {{password.errors?.['minlength'].requiredLength}}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ? CONFIRM PASSWORD -->
+    <mat-form-field appearance="fill">
+      <mat-label>Повторите пароль</mat-label>
+      <input matInput type="password" formControlName="confirmPassword">
+      <mat-error *ngIf="confirmPassword.dirty && confirmPassword?.hasError('required')">
+        Обязательное поле
+      </mat-error>
+      <mat-error
+        *ngIf="
+            confirmPassword.invalid
+            && confirmPassword.value.length > 0
+            && confirmPassword.dirty
+            && confirmPassword?.errors?.['mismatch']">
+        Пароли не совпадают
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ? Error Msg -->
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <!-- ? Submit -->
+    <button
+      class="action"
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Зарегистрироваться
+    </button>
+
+    <!-- ? link  -->
+    <div class="link">
+      Есть аккаунт? <a routerLink="/login">Заходи, в дверях не стой</a>
+    </div>
+  </form>
+</div>

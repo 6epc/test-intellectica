@@ -1,1 +1,152 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: url(assets/images/logo.png);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+
+  .mat-mdc-unelevated-button[disabled],
+  .mat-mdc-unelevated-button.mat-mdc-button-disabled {
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+.container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  &.table-container {
+    max-width: 100%;
+    margin: 2rem;
+
+    .mat-mdc-table tbody,
+    .mat-mdc-table tfoot,
+    .mat-mdc-table thead,
+    .mat-mdc-cell,
+    .mat-mdc-footer-cell,
+    .mat-mdc-header-row,
+    .mat-mdc-row,
+    .mat-mdc-footer-row,
+    .mat-mdc-table .mat-mdc-header-cell {
+      background: var(--mat-sys-surface-variant);
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    .mat-mdc-form-field-error {
+      color: #f44336;
+    }
+  }
+
+  .error-message {
+    color: #f44336;
+    margin-bottom: 1rem;
+  }
+
+  .action {
+    min-width: 200px;
+  }
+}
+
+.link {
+  cursor: pointer;
+  margin-top: 1rem;
+
+  a {
+    color: #3f51b5;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.snackbar-success,
+.snackbar-error {
+  --mat-snack-bar-button-color: #ffffff;
+  --mat-sys-inverse-on-surface: #ffffff;
+
+  .mat-mdc-snack-bar-action {
+    background-color: rgba(white, 0.2);
+  }
+}
+
+.snackbar-success {
+  --mdc-snackbar-container-color: green;
+}
+
+.snackbar-error {
+  --mdc-snackbar-container-color: #f44336;
+}
+
+
+.mat-mdc-table.dashboard-table {
+  .mdc-data-table__content {
+    tr {
+      cursor: pointer;
+
+      &:hover {
+        .mat-mdc-cell {
+          background-color: lighten(#4e444b, 10%);
+          transition: background-color 0.3s linear;
+        }
+      }
+    }
+  }
+}
+
+.logout-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logout {
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+}
+
+.status-pending {
+  color: orange;
+}
+
+.status-ready {
+  color: green;
+}
+
+.status-rejected {
+  color: red;
+}
+
+.status-issued {
+  color: rgb(7, 18, 82);
+}
+
+
