@@ -15,7 +15,7 @@
       <mat-card-content>
         <p>
           Статус:
-          <b [class]="getStatusClass(request.status)">
+          <b [class]="request.status | statusClass">
             {{ request.status }}
           </b>
         </p>

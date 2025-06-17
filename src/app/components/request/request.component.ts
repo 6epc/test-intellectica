@@ -11,10 +11,11 @@ import { NotificationsService } from './../../shared/notifications.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../shared/auth.service';
+import { StatusPipe } from '../../shared/status.pipe';
 
 @Component({
   selector: 'app-request',
-  imports: [CommonModule, MatCardModule, MatButtonModule, RouterModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, RouterModule, StatusPipe],
   templateUrl: './request.component.html',
   styleUrl: './request.component.scss',
 })
@@ -87,22 +88,6 @@ export class RequestComponent {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe(() => this.loadRequest());
-  }
-
-  getStatusClass(status: string): string {
-    switch (status) {
-      case 'на согласовании':
-        return 'status-pending';
-      case 'пропуск готов':
-        return 'status-ready';
-      case 'отклонена':
-        return 'status-rejected';
-      case 'пропуск выдан':
-        return 'status-issued';
-
-      default:
-        return '';
-    }
   }
 
   logout() {

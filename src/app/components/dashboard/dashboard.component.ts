@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,17 +6,18 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../../shared/api.service';
+import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { NotificationsService } from './../../shared/notifications.service';
-import { AuthService } from '../../shared/auth.service';
-import { PassRequest, RegisterUserInfo } from '../../shared/models.interface';
 import { MatTableModule } from '@angular/material/table';
 import { Observable, of, switchMap, take } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Router } from '@angular/router';
+import { NotificationsService } from './../../shared/notifications.service';
+import { PassRequest, RegisterUserInfo } from '../../shared/models.interface';
+import { ApiService } from '../../shared/api.service';
+import { AuthService } from '../../shared/auth.service';
 import { futureDateValidator } from '../../shared/custom.validators';
+import { StatusPipe } from '../../shared/status.pipe';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +27,7 @@ import { futureDateValidator } from '../../shared/custom.validators';
     MatButtonModule,
     CommonModule,
     MatTableModule,
+    StatusPipe
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -123,22 +125,6 @@ onSubmit() {
     });
   }
 }
-
-  getStatusClass(status: string): string {
-    switch (status) {
-      case 'на согласовании':
-        return 'status-pending';
-      case 'пропуск готов':
-        return 'status-ready';
-      case 'отклонена':
-        return 'status-rejected';
-      case 'пропуск выдан':
-        return 'status-issued';
-
-      default:
-        return '';
-    }
-  }
 
   navigateToReq(req:PassRequest) {
     this.router.navigate(['/dashboard', req.localId]);

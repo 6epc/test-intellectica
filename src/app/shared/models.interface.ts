@@ -25,3 +25,14 @@ export interface loginUserInfo {
   email: string;
   password: string;
 }
+
+export enum Status {
+  PENDING = 'на согласовании',
+  READY = 'пропуск готов',
+  REJECTED = 'отклонена',
+  ISSUED = 'пропуск выдан'
+}
+
+export type StatusClassMap = {
+  [key in Status]: string;
+};
